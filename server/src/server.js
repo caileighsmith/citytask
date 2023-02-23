@@ -42,6 +42,13 @@ app.get('/users', async(req, res)=>{
     })
 })
 
+//Find user based on username param (/user/username)
+app.get('/user/:username', async(req, res)=>{
+    console.log(req.params.username)
+    res.send({
+        user: req.params.username ? await User.findAll({where: {username: req.params.username}}) : `No user found.`
+    })
+})
 
 
 
