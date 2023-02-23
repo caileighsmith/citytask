@@ -22,6 +22,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+//USER ROUTES - CATEGORY
 //Add new user
 app.post('/user', async(req, res)=>{
     if (req.body.username && req.body.password){
@@ -66,6 +68,8 @@ app.post('/task', async(req, res)=>{
     })
 })
 
+
+//TASK ROUTES - CATEGORY
 //View all tasks
 app.get('/tasks', async(req, res)=>{
     res.send({
@@ -81,6 +85,7 @@ app.get('/task/:id', async(req, res)=>{
     })
 })
 
+//Delete task via given ID param
 app.delete('/task/:id', async(req, res)=>{
     query = await Task.findAll({where: {id : req.params.id}}) 
     if (query.length != 0){
