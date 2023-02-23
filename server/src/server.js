@@ -81,6 +81,21 @@ app.get('/task/:id', async(req, res)=>{
     })
 })
 
+app.delete('/task/:id', async(req, res)=>{
+    query = await Task.findAll({where: {id : req.params.id}}) 
+    if (query.length != 0){
+        await Task.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.send(`deleted task with ID ${req.params.id}`)
+    }else{
+        res.send(`Not deleted.`)
+    }
+
+})
+
 
 app.listen(port, ()=>{
     console.log(`Server started on port ${port}. Ctrl + C to terminate.`);
