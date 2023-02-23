@@ -44,12 +44,42 @@ app.get('/users', async(req, res)=>{
 
 //Find user based on username param (/user/username)
 app.get('/user/:username', async(req, res)=>{
-    console.log(req.params.username)
+    query = await User.findAll({where: {username : req.params.username}}) 
     res.send({
-        user: req.params.username ? await User.findAll({where: {username: req.params.username}}) : `No user found.`
+        user: query.length != 0? await User.findAll({where: {username: req.params.username}}) : `No user found.`
     })
 })
 
+//Create a task
+app.post('/task', async(req, res)=>{
+    if (req.body){
+        var task = Task.create({
+            title: req.body.title,
+            description: req.body.description,
+            value: req.body.value,
+            comission: req.body.comission,
+            taken: req.body.taken,
+            assignedUser: req.body.assignedUser
+        })}
+    res.send({
+        message: task? `Task created successfuly` : `Task failed to create. Please try again..`
+    })
+})
+
+//View all tasks
+app.get('/tasks', async(req, res)=>{
+    res.send({
+        tasks: await Task.findAll()
+    })
+})
+
+//Find task via ID param
+app.get('/task/:id', async(req, res)=>{
+    query = await Task.findAll({where: {id : req.params.id}}) 
+    res.send({
+        task: query.length != 0 ? await Task.findAll({where: {id : req.params.id}}) : `No task with id ${req.params.id} found.`
+    })
+})
 
 
 app.listen(port, ()=>{
