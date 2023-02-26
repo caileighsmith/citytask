@@ -1,0 +1,14 @@
+<div *ngFor="let task of tasks$">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{task.title}}</mat-card-title>
+            <mat-card-subtitle><p>Comission: ${{task.comission}}</p></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{task.description}}</p>
+            <p>Value: ${{task.value}}</p>
+            <button mat-raised-button color="warn" (click)="deleteTask(task.id)">Delete</button>
+        </mat-card-content>
+    </mat-card>
+    <br>
+</div>

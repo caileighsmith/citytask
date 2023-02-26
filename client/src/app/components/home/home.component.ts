@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -6,13 +7,6 @@ import { TaskService } from 'src/app/services/task.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  constructor(@Inject(TaskService) private taskService: any){ }
-
-  showTasks(){
-    this.taskService.getTasks().subscribe((res:any)=>{
-      console.log( Object.values (res.body))
-    })
-  }
+export class HomeComponent{
 
 }

@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 //Allowing CROSS access.
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -94,13 +94,12 @@ app.delete('/task/:id', async(req, res)=>{
                 id: req.params.id
             }
         })
-        res.send(`deleted task with ID ${req.params.id}`)
+        res.send({message: `deleted task with ID ${req.params.id}`})
     }else{
-        res.send(`Not deleted.`)
+        res.send({message:`Not deleted.`})
     }
 
 })
-
 
 app.listen(port, ()=>{
     console.log(`Server started on port ${port}. Ctrl + C to terminate.`);

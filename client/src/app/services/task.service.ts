@@ -21,4 +21,8 @@ export class TaskService {
     );
   }
 
+  deleteTask(id:any){
+    this.http.delete(`${url}task/${id}`).subscribe(()=>{console.log('deleted.')})
+  }
+
 }
