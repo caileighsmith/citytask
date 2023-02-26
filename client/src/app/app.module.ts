@@ -36,7 +36,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

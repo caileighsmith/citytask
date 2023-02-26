@@ -9,6 +9,7 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TasksComponent {
   @Input() tasks$: any;
+  admin = false; // focus on this another time
   private subscription: any
 
   constructor(@Inject(TaskService) private taskService: any){ }
